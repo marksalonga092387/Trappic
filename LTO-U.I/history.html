@@ -1,0 +1,168 @@
+<html>
+    <head>
+        <title>TRAPPIC|LTO</title>
+        <link rel="stylesheet" href="content.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+      <section id="nav-bar">
+
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Maintenance
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+                        <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+                        <a class="dropdown-item" href="/registercar">Car Registration</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="violations.html">List of Violations</a>
+                    </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/payment">Payments</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Search
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/searchdriver">Driver</a>
+                      <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+                      <a class="dropdown-item" href="/viewcar">Car</a>
+                    </div>
+                  </li>
+                  
+                </ul>
+              </div>
+            </nav>
+
+      </section>
+
+        <section id="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="promo-title">VIOLATIONS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="search">
+          <h3>Pending Violations</h3>
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">10/11/1996</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">06/02/1995</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">11/24/1994</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">01/17/1993</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                  <h3>Eating</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                </div>
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                  <h3>Robbery</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                </div>
+                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                  <h3>Sleeping</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                </div>
+                <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                  <h3>Jaywalking</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="search">
+          
+          <h3>History of Violations</h3>
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-1-list" data-toggle="list" href="#list-1" role="tab" aria-controls="1">10/11/1996</a>
+                <a class="list-group-item list-group-item-action" id="list-2-list" data-toggle="list" href="#list-2" role="tab" aria-controls="2">06/02/1995</a>
+                <a class="list-group-item list-group-item-action" id="list-3-list" data-toggle="list" href="#list-3" role="tab" aria-controls="3">11/24/1994</a>
+                <a class="list-group-item list-group-item-action" id="list-4-list" data-toggle="list" href="#list-4" role="tab" aria-controls="4">01/17/1993</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-1-list">
+                  <h3>Eating</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                  <h5>Status:</h5>
+                  <p><b>Paid</b></p>
+                </div>
+                <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-2-list">
+                  <h3>Robbery</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                  <h5>Status:</h5>
+                  <p><b>Paid</b></p>
+                </div>
+                <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-3-list">
+                  <h3>Sleeping</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                  <h5>Status:</h5>
+                  <p><b>Paid</b></p>
+                </div>
+                <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-4-list">
+                  <h3>Jaywalking</h3><br>
+                  <h5>Location:</h5>
+                  <p>Caloocan</p>
+                  <h5>Enforcer:</h5>
+                  <p>Jan Carlo Espiritu</p>
+                  <h5>Status:</h5>
+                  <p><b>Paid</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </body>
+</html>

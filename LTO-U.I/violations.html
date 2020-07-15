@@ -1,0 +1,233 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="/registercar">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">LIST OF VIOLATIONS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="violations">
+    <div class="row">
+      <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-one-list" data-toggle="list"
+            href="#list-one" role="tab" aria-controls="home">Driving without valid license</a>
+          <a class="list-group-item list-group-item-action" id="list-two-list" data-toggle="list" href="#list-two"
+            role="tab" aria-controls="profile">Driving a motor vehicle used in the commission of crime</a>
+          <a class="list-group-item list-group-item-action" id="list-three-list" data-toggle="list" href="#list-three"
+            role="tab" aria-controls="messages">Driving under the impact of alcohol/ dangerous drugs</a>
+          <a class="list-group-item list-group-item-action" id="list-four-list" data-toggle="list" href="#list-four"
+            role="tab" aria-controls="settings">Reckless driving</a>
+          <a class="list-group-item list-group-item-action" id="list-five-list" data-toggle="list" href="#list-five"
+            role="tab" aria-controls="settings">Submission of fake documents upon new/ renewal of license</a>
+          <a class="list-group-item list-group-item-action" id="list-six-list" data-toggle="list" href="#list-six"
+            role="tab" aria-controls="settings">Failure to wear the prescribed seat belt device</a>
+          <a class="list-group-item list-group-item-action" id="list-seven-list" data-toggle="list" href="#list-seven"
+            role="tab" aria-controls="settings">Failure to require his/her passenger to wear seatbelt</a>
+          <a class="list-group-item list-group-item-action" id="list-eight-list" data-toggle="list" href="#list-eight"
+            role="tab" aria-controls="settings">Not wearing a helmet (driver/ passenger)</a>
+          <a class="list-group-item list-group-item-action" id="list-nine-list" data-toggle="list" href="#list-nine"
+            role="tab" aria-controls="settings">Driving withoud Driver's license, OR/CR</a>
+
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-one" role="tabpanel" aria-labelledby="list-one-list">
+            <p><b>Driving without valid license</b></p><br>
+
+            <p>This includes the following:</p>
+            <li>Expired</li>
+            <li>Revoked</li>
+            <li>Suspended</li>
+            <li>Inappropriate driver's license restriction code</li>
+            <li>Fake driver's license</li>
+            <li>Student driver without being accompanied by a duly licensed driver</li><br>
+            <p><b>Fines/Penalties:</b></p>
+            <li>Php 3,000</li>
+            <li>disqualified from being granted a driver's license</li>
+            <li>disqualified driving a motor vehicles for a period of one(1) year from the payment of the Php 3,000
+              fine.</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-two" role="tabpanel" aria-labelledby="list-two-list">
+            <p><b>Driving a motor vehicle used in the commission of crime</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <li>Php 10,000</li>
+            <li>driver's license confiscated/revoked</li>
+            <li>disqualified from being a granted driver's licensed and driving a motor vehicle.</li>
+            <li>motor vehicle impounded</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-three" role="tabpanel" aria-labelledby="list-three-list">
+            <p><b>Driving under the impact of alcohol/dangerous drugs</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <p>For non-professional driver's license</p>
+            <p><i>First Offense</i></p>
+            <li>driver's license confiscated</li>
+            <li>driver's license suspended for a period of 12 months</li><br>
+
+            <p><i>Second Offense</i></p>
+            <li>driver's license revoked</li><br>
+
+            <p>For non-professional driver's license</p>
+            <p><i>First Offense</i></p>
+            <li>driver's license confiscated</li>
+            <li>driver's license perpetually revoked</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-four" role="tabpanel" aria-labelledby="list-four-list">
+            <p><b>RECKLESS DRIVING</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <p><i>First Offense</i></p>
+            <li>Php 2,000</li><br>
+
+            <p><i>Second Offense</i></p>
+            <li>Php 3,000</li>
+            <li>driver's license suspended for a period of 3 months</li><br>
+
+            <p><i>Third Offense</i></p>
+            <li>Php 10,000</li>
+            <li>driver's license suspended for a period of 6 months</li><br>
+
+            <p><i>Fourth/Subsequent Offense</i></p>
+            <li>Php 10,000</li>
+            <li>revocation driver's license</li>
+            <li>revoked non-professional driver-qualified from being granted a driver's license for a period of 2 years
+              counted from the date of the revocation</li>
+            <li>revoked professional driver-perpetually disqualified from getting any driver's license.</li><br>
+          </div>
+
+          <div class="tab-pane fade" id="list-five" role="tabpanel" aria-labelledby="list-five-list">
+            <p><b>Submission of fake documents upon new/renewal of license</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <li>Php 3,000</li>
+            <li>driver's license put on alarm, revoked and disqualified granted a driver's license and driving a motor
+              vehicle for a period of 1 year from the payment of the fine, without prejudice to the fling of appropriate
+              criminal charges.</li><br>
+          </div>
+
+          <div class="tab-pane fade" id="list-six" role="tabpanel" aria-labelledby="list-six-list">
+            <p><b>Failure to wear the prescribed seat belt device</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <p><i>First Offense</i></p>
+            <li>Php 1,000</li><br>
+
+            <p><i>Second Offense</i></p>
+            <li>Php 2,000</li><br>
+
+            <p><i>Third Offense</i></p>
+            <li>Php 5,000</li>
+            <li>Driver's license suspended for a period of 1 week from the payment of the fine.</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-seven" role="tabpanel" aria-labelledby="list-seven-list">
+
+            <p><b>Failure to require his/her passenger to wear seatbelt</b></p><br>
+            <p><i>For public utility vehicles, failure to post appropriate signage's instructing front seat passengers
+                to wear seatbelts when inside the vehicle</i></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <li>Php 3,000 every violation(driver and the operator of the PUJ)</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-eight" role="tabpanel" aria-labelledby="list-eight-list">
+
+            <p><b>Not wearing a helmet (driver/passenger)</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <p><i>First Offense</i></p>
+            <li>Php 1,500</li><br>
+
+            <p><i>Second Offense</i></p>
+            <li>Php 3,000</li><br>
+
+            <p><i>Third Offense</i></p>
+            <li>Php 5,000</li><br>
+
+            <p><i>Fourth and succeeding offense</i></p>
+            <li>Php 10,000</li>
+          </div>
+
+          <div class="tab-pane fade" id="list-nine" role="tabpanel" aria-labelledby="list-nine-list">
+
+            <p><b>Driving withoud Driver's license, OR/CR</b></p><br>
+
+            <p><b>Fines/Penalties:</b></p>
+            <li>Php 1,000</li>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

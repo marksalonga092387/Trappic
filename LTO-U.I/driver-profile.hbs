@@ -1,0 +1,411 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <link rel="stylesheet" href="content.css">
+  <script src="node_modules/web3/dist/web3.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="/registercar">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">SEARCH</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="search">
+    <div class="row">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-info-list" data-toggle="list"
+          href="#list-info" role="tab" aria-controls="info">Personal Info</a>
+        <a class="list-group-item list-group-item-action" id="list-cars-list" data-toggle="list" href="#list-cars"
+          role="tab" aria-controls="cars">Cars</a>
+        <a class="list-group-item list-group-item-action" id="list-license-list" data-toggle="list" href="#list-license"
+          role="tab" aria-controls="license">License Info</a>
+        <a class="list-group-item list-group-item-action" id="list-violations-list" data-toggle="list"
+          href="#list-violations" role="tab" aria-controls="violations">Violations</a>
+      </div>
+
+      <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-info" role="tabpanel" aria-labelledby="list-info-list">
+
+            {{#each result}}
+            <form class="form-inline my-2 my-lg-0" action="/editprofile?para1={{licence_no}}&para2={{usertype}}"
+              method="POST">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">License No.</th>
+                    <td>{{licence_no}}</th>
+                    <th>Firstname</th>
+                    <td>{{fname}}</td>
+
+
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Middlename</th>
+                    <td>{{mname}}</td>
+                    <th>Lastname</th>
+                    <td>{{lname}}</td>
+                  </tr>
+
+                </tbody>
+                <thead>
+                  <tr>
+
+                    <th>User Type</th>
+                    <td>{{usertype}}</td>
+                    <th scope="col">Nationality</th>
+                    <td>{{nationality}}</th>
+                  </tr>
+                  <br>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="col">Sex</th>
+                    <td>{{sex}}</td>
+                    <th scope="col">Email</th>
+                    <td>{{email}}</td>
+                  </tr>
+
+                </tbody>
+                <thead>
+                  <tr>
+                    <th scope="col">Zip Code</th>
+                    <td>{{zip}}</td>
+                    <th scope="col">Address</th>
+                    <td>{{address}}</td>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="col">Birthday</th>
+                    <td>{{bday}}</td>
+                    <th scope="col">Birthplace</th>
+                    <td>{{birthplace}}</td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+              <button type="submit" class="btn btn-outline-success">Edit</button>
+              {{/each}}
+            </form>
+          </div>
+          <div class="tab-pane fade show" id="list-cars" role="tabpanel" aria-labelledby="list-cars-list">
+
+            <form class="form-inline my-2 my-lg-0">
+
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Car Brand</th>
+                    <th scope="col">Car Model</th>
+                    <th scope="col">Car Color</th>
+                    <th scope="col">Plate Number</th>
+                    <th scope="col">Conduction Sticker</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each car}}
+                  <tr>
+                    <th scope="row">{{cno}}</th>
+                    <td>{{brand}}</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{platenumber}}</td>
+                    <td>{{conductor}}</td>
+
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </form>
+          </div>
+
+          <div class="tab-pane fade" id="list-license" role="tabpanel" aria-labelledby="list-license-list">
+            {{#each result}}
+            <div class="row">
+              <div class="col-md-6">
+                <label>License Number</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{licence_no}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{name}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Address</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{address}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Contact no.</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{contact}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Expiration Date</label>
+              </div>
+              <div class="col-md-6">
+                <p>October 11, 1996</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Status</label>
+              </div>
+              <div class="col-md-6">
+                <p>Expired</p>
+              </div>
+              <button type="button" class="btn btn-outline-success">Terminate</button>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="list-violations" role="tabpanel" aria-labelledby="list-violations-list">
+
+            <h3>Pending Violations</h3>
+            <form class="form-inline my-2 my-lg-0">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Violation</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Officer</th>
+                    <th scope="col">DueDate</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Penalty</th>
+                    <th scope="col">License Tracker</th>
+
+
+                  </tr>
+                </thead>
+                <tbody id="pv">
+
+                </tbody>
+              </table>
+            </form>
+
+
+            <h3>History of Violations</h3>
+            <form class="form-inline my-2 my-lg-0">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Violation</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Officer</th>
+                    <th scope="col">DueDate</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Penalty</th>
+                    <th scope="col">License Tracker</th>
+
+
+                  </tr>
+                </thead>
+                <tbody id="hv">
+
+                </tbody>
+              </table>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../server.js"></script>
+  <script>
+    web3.eth.getAccounts().then(function (accounts) {
+      var acc = accounts[2];
+      var mycontract;
+      $(document).ready(function () {
+
+
+
+        mycontract = new web3.eth.Contract(abi, address, {
+          from: acc,
+          gasPrice: '0',
+          gas: 1400000
+        });
+        pdisplay();
+        hdisplay();
+      })
+
+      function pdisplay() {
+        var list = $("#pv");
+        list.empty();
+
+
+        mycontract.methods.getlength().call().then(function (len) {
+          let ctr = 0;
+          for (let x = 0; x < len; x++) {
+            mycontract.methods.getddata(x).call({ from: acc }).then(function (result) {
+              let driver = "";
+              let enforcer = "";
+              let license = "";
+              if (result[5] == false) {
+                {{#each enforcer}}
+                if ("{{dno}}" == result[0]) {
+                  enforcer = "{{name}}";
+                }
+                {{/each}}
+                {{#each driver}}
+                if ("{{dno}}" == result[1]) {
+                  driver = "{{name}}";
+                  mycontract.methods.getppdata(x).call({ from: acc }).then(function (result1) {
+                  ctr++;
+                  var datenow = new Date();
+                  var due = new Date(result1[0]);
+                  let d = 0;
+                  while (due < datenow) {
+                      d++;
+                      due.setDate(due.getDate() + 1);
+                  }
+                    if (d != 0)
+                    d--;
+                    let pen = 100 * d;
+                    var add = "<tr><td>" + ctr + "</td><td>" + result[3] + "</td><td>" + result[4] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + result1[0] + "</td></td><td>" + result1[1] + "</td></td><td>" + pen + "</td></td><td>" + result1[3] + "</td></tr>";
+                    list.append(add);
+                  });
+                }
+                {{/each}}
+              }
+            });
+          }
+        });
+      }
+
+      function hdisplay() {
+        var list = $("#hv");
+        list.empty();
+
+
+        mycontract.methods.getlength().call().then(function (len) {
+          let ctr = 0;
+          for (let x = 0; x < len; x++) {
+            mycontract.methods.getddata(x).call({ from: acc }).then(function (result) {
+              let driver = "";
+              let enforcer = "";
+              let license = "";
+              if (result[5] == true) {
+                {{#each enforcer}}
+                if ("{{dno}}" == result[0]) {
+                  enforcer = "{{name}}";
+                }
+                {{/each}}
+                {{#each driver}}
+                if ("{{dno}}" == result[1]) {
+                  driver = "{{name}}";
+                  mycontract.methods.getppdata(x).call({ from: acc }).then(function (result1) {
+                    ctr++;
+                    var datenow = new Date();
+                    var due = new Date(result1[0]);
+                    let d = 0;
+                    while (due < datenow) {
+                      d++;
+                      due.setDate(due.getDate() + 1);
+                    }
+                    if (d != 0)
+                      d--;
+                      let pen = 100 * d;
+                      var add = "<tr><td>" + ctr + "</td><td>" + result[3] + "</td><td>" + result[4] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + result1[0] + "</td></td><td>" + result1[1] + "</td></td><td>" + result1[2] + "</td></td><td>" + result1[3] + "</td></tr>";
+                      list.append(add);
+                  });
+                }
+                {{/each}}
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

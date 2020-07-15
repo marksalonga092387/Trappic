@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: sans-serif;
+    background-image: url("traffic.png");
+    background-position: center;
+    background-size: cover;
+}
+
+#nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, #d37407, #ffa601);
+}
+
+.navbar-brand img{
+    height: 150px;
+    width: 200px;
+    margin: -45px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+}
+
+.navbar-nav li{
+    font-size: 15pt;
+}
+
+
+
+
+.fa-bars{
+    color: #fff;
+}
+
+/*---------------------------- banner section -----------------------------*/
+
+#banner{
+    background-image: linear-gradient(to right, #ffffff, #ffecc6);
+}
+
+.promo-title{
+    font-size: 30px;
+    font-weight: 600;
+    color: grey;
+}
+
+#registrations, #search, #payment{
+    margin: 5px;
+}
+
+.search{
+    border: none;
+    background: none;
+    text-transform: capitalize;
+    margin-top: 7px;
+}

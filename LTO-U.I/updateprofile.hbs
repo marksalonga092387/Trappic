@@ -1,0 +1,160 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="/registercar">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">Edit Profile</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="registrations">
+    {{#each result}}
+    <form action="/saveupdate?para1={{licence_no}}&para2={{usertype}}&para3={{dno}}" method="POST">
+      <p>User Type: {{usertype}}</p>
+
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault01">First name</label>
+          <input type="text" class="form-control" name="fname" id="validationDefault01" placeholder="First name"
+            value="{{fname}}" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault02">Last name</label>
+          <input type="text" class="form-control" name="lname" id="validationDefault02" placeholder="Last name"
+            value="{{lname}}" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationDefaultUsername">Middle name</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="mname" id="validationDefaultUsername"
+              placeholder="Middle name" value="{{mname}}" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault03">Nationality</label>
+          <input type="text" class="form-control" name="nation" placeholder="Nationality" id="validationDefault03"
+            value="{{nationality}}" required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationDefault04">Sex</label>
+          <select class="custom-select" name="sex" id="validationDefault04" value="{{sex}}" required>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="validationDefault05">Zip</label>
+          <input type="text" class="form-control" name="zip" placeholder="Zip Code" id="validationDefault05"
+            value="{{zip}}" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Email</label>
+          <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}" id="inputEmail4">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          <input type="password" class="form-control" name="pass" placeholder="Password" value="{{pass}}"
+            id="inputPassword">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Full Address"
+          value="{{address}}" required>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault01">Birthdate</label>
+          <input type="date" class="form-control" name="bday" id="validationDefault01" value="{{bday}}" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault02">Birthplace</label>
+          <input type="text" class="form-control" name="bplace" id="validationDefault02" placeholder="Birthplace"
+            value="{{birthplace}}" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationDefaultUsername">Age</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="age" id="validationDefaultUsername" placeholder="Age"
+              value="{{age}}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">License Number</label>
+          <input type="text" class="form-control" id="inputAddress" name="license" placeholder="License No."
+            value="{{licence_no}}" required>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">Submit form</button>
+      {{/each}}
+    </form>
+  </section>
+</body>
+
+</html>

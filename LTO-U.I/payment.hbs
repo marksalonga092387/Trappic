@@ -1,0 +1,316 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <script src="node_modules/web3/dist/web3.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="/registercar">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">PAYMENTS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="payment">
+    <form class="form-inline my-2 my-lg-0" action="/searchpayment" method="POST">
+      <select class="btn btn-outline-success my-2 my-sm-0" id="csearch" name="category">
+        <option>Search by</option>
+        <option>Name</option>
+        <option>License No.</option>
+        <option>Violation</option>
+      </select>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" id="search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" id="sbutton" type="button">Search</button>
+      <table class="table" id="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">License_No.</th>
+            <th scope="col">Violation</th>
+            <th scope="col">Date_Commit</th>
+            <th scope="col">Officer</th>
+            <th scope="col">Status</th>
+            <th scope="col">License_Tracker</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="yey">
+        </tbody>
+
+      </table>
+    </form>
+  </section>
+  <script>
+    let v;
+    {{#each result}}
+    if ('{{dno}}' == '7') {
+      document.getElementById('a').innerHTML = "asd";
+    }
+    {{/each}}
+  </script>
+  <p id="a"></p>
+
+
+  <script src="../server.js"></script>
+  <script>
+    web3.eth.getAccounts().then(function (accounts) {
+      var acc = accounts[2];
+      var mycontract;
+      var enno;
+      $(document).ready(function () {
+        mycontract = new web3.eth.Contract(abi, address, {
+          from: acc,
+          gasPrice: '0',
+          gas: 1400000
+        });
+        display();
+        $('#table').on('click', '.action', function () {
+          var action = $(this).data('id');
+          var code = $(this).data('id1');
+          var dno = $(this).data('id2');
+          mycontract.methods.tracking(dno, action, code).send({ from: acc }).then(function () {
+            if (code == "LTO") {
+              alert("Successfully Transfer to " + code);
+              window.location.href = "/hehez";
+            }
+            else {
+              alert("Successfully Return to Driver");
+              window.location.href = "/hehez";
+            }
+          });
+        })
+      })
+  
+      $('#sbutton').click(function () {
+        var search = $('#search').val();
+        fsearch(search);
+      })
+  
+      function display() {
+        var list = $("#yey");
+        list.empty();
+
+        mycontract.methods.getlength().call().then(function (len) {
+          let ctr = 0;
+          for (let x = 0; x < len; x++) {
+            mycontract.methods.getpdata(x).call({ from: acc }).then(function (result) {
+              let dno = result[1];
+              let driver = "";
+              let enforcer = "";
+              let license = "";
+              let status = "Unpaid";
+              if (result[4] == true) {
+                status = "Paid"
+              }
+              {{#each resuls}}
+              if ("{{dno}}" == result[0]) {
+                enforcer = "{{name}}";
+              }
+              {{/each}}
+              {{#each result}}
+              if ("{{dno}}" == result[1]) {
+                driver = "{{name}}";
+                license = "{{licence_no}}";
+              }
+              {{/each}}
+              ctr++;
+                          
+              mycontract.methods.getppdata(x).call({ from: acc }).then(function (result1) {
+                var add = "";
+                if (result1[3] == "Onhand") {
+                  add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td><td>Ok</td></tr>";
+                }
+                else if (result1[3] == "Pending") {
+                  add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td><td>Pending</td></tr>";
+                }
+                else if (result1[3] == "TE") {
+                  add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td>" +
+                  "<td><a style = 'text-decoration: underline;' href='javascript:void(0);' class='action' data-id='" + result1[4] + "' data-id1='LTO' data-id2='" + dno + "'>Transfer to LTO</a></td></tr>";
+                }
+                else {
+                  add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td>" +
+                  "<td><a style = 'text-decoration: underline;' href='javascript:void(0);' class='action' data-id='" + result1[4] + "' data-id1='Onhand' data-id2='" + dno + "'>Return to Driver</a></td></tr>";
+                }
+                list.append(add);
+              });
+            });
+          }
+        });
+      }
+          
+      function contains(value, search) {
+        value = value.toLowerCase();
+        search = search.toLowerCase();
+        let slength = search.length;
+        let vlength = value.length;
+        let ctr = 0;
+        let inv = 0;
+        let bol1 = false, bol2 = false;
+        for (let x = 0; x < vlength; x++) {
+          if (value[x] == search[ctr])
+            bol1 = true;
+          else
+            bol1 = false;
+          
+          if (bol1 == false)
+            ctr = 0;
+          else
+            ctr++;
+
+          if (ctr == slength) {
+            bol2 = true;
+            break;
+          }
+        }
+        return bol2;
+      }
+          
+      function fsearch(search) {
+        if (search == "") {
+          alert("hey");
+          display();
+          return;
+        }
+        var cat = $('#csearch').val();
+        var list = $("#yey");
+        list.empty();
+
+        mycontract.methods.getlength().call().then(function (len) {
+          let ctr = 0;
+          for (let x = 0; x < len; x++) {
+            mycontract.methods.getpdata(x).call({ from: acc }).then(function (result) {
+              let dno = result[1];
+              let driver = "";
+              let enforcer = "";
+              let license = "";
+              let status = "Unpaid";
+
+              if (result[4] == true) {
+                status = "Paid"
+              }
+              {{#each resuls}}
+                  
+              if ("{{dno}}" == result[0]) {
+                enforcer = "{{name}}";
+              }
+              {{/each}}
+              {{#each result}}
+              
+              if ("{{dno}}" == result[1]) {
+                driver = "{{name}}";
+                license = "{{licence_no}}";
+              }
+              {{/each}}
+              let bol = false;
+              
+              if (cat == "Name") {
+                bol = contains(driver, search);
+              }
+              else if (cat == "License No.") {
+                bol = contains(license, search);
+              }
+              else if (cat == "Violation") {
+                bol = contains(result[3], search);
+              }
+              else {
+                let array = [driver, license, result[3]];
+                
+                for (let x = 0; x < 3; x++) {
+                  bol = contains(array[x], search);
+                    if (bol == true) {
+                      break;
+                    }
+                }
+              }
+                          
+              if (bol == true) {
+                ctr++;
+                mycontract.methods.getppdata(x).call({ from: acc }).then(function (result1) {
+                  var add = "";
+                  if (result1[3] == "Onhand") {
+                    add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td><td>Ok</td></tr>";
+                  }
+                  else if (result1[3] == "Pending") {
+                    add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td><td>Pending</td></tr>";
+                  }
+                  else if (result1[3] == "TE") {
+                    add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td>" +
+                    "<td><a style = 'text-decoration: underline;' href='javascript:void(0);' class='action' data-id='" + result1[4] + "' data-id1='LTO' data-id2='" + dno + "'>Transfer to LTO</a></td></tr>";
+                  }
+                  else {
+                    add = "<tr><td>" + ctr + "</td><td>" + driver + "</td><td>" + license + "</td><td>" + result[3] + "</td><td>" + result[2] + "</td><td>" + enforcer + "</td><td>" + status + "</td><td>" + result1[3] + "</td>" +
+                    "<td><a style = 'text-decoration: underline;' href='javascript:void(0);' class='action' data-id='" + result1[4] + "' data-id1='Onhand' data-id2='" + dno + "'>Return to Driver</a></td></tr>";
+                  }
+                  list.append(add);
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+
+</html>

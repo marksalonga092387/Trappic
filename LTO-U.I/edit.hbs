@@ -1,0 +1,153 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="/registercar">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">SEARCH</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="search">
+    {{#each result}}
+    <form class="form-inline my-2 my-lg-0" id="mytable">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">License No.</th>
+            <td name="license">{{licence_no}}</td>
+            <th>Firstname</th>
+            <td>{{fname}}</td>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Middlename</th>
+            <td>{{mname}}</td>
+            <th>Lastname</th>
+            <td>{{lname}}</td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th>User Type</th>
+            <td name="type">{{usertype}}</td>
+            <th scope="col">Nationality</th>
+            <td>{{nationality}}</th>
+          </tr>
+          <br>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">Sex</th>
+            <td>{{sex}}</td>
+            <th scope="col">Email</th>
+            <td>{{email}}</td>
+          </tr>
+
+        </tbody>
+        <thead>
+          <tr>
+            <th scope="col">Zip Code</th>
+            <td>{{zip}}</td>
+            <th scope="col">Address</th>
+            <td>{{address}}</td>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col">Birthday</th>
+            <td>{{bday}}</td>
+            <th scope="col">Birthplace</th>
+            <td>{{birthplace}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+      <button type="button" class="btn btn-outline-success" id="edit" onclick="javascript:void(0);"
+        data-id="{{licence_no}}" data-id1="Driver">Edit</button>
+      <button type="button" class="btn btn-outline-success"
+        onclick="window.location.href = 'history.html';">Violations</button>
+      <button type="button" class="btn btn-outline-success"
+        onclick="window.location.href = 'license-info.html';">License Info</button>
+      {{/each}}
+    </form>
+  </section>
+  <script>
+    $(document).ready(function () {
+      //showing data to modal for edit record
+      $('#mytable').on('click', '#edit', function () {
+        var product_id = $(this).data('id');
+        var awit = $(this).data('id1');
+        alert(product_id + " " + awit);
+        window.location.href = "/editprofile?para1=" + product_id + "&para2=" + awit;
+      });
+
+    });
+  </script>
+</body>
+
+</html>

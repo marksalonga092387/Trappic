@@ -1,0 +1,176 @@
+<html>
+
+<head>
+  <title>TRAPPIC|DRIVER</title>
+  <script src="node_modules/web3/dist/web3.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="content.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/home"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/home">Dashboard<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations<span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/history">Caught History</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Account</a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="promo-title">Driver Payment</h3>
+          <center>
+            {{#each driver}}
+            <h3 class="promo-title" style="margin-left: -50px; font-size: 20px;" id="balance">Balance: {{balance}}</h3>
+            {{/each}}
+          </center>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="table-responsive">
+  <section id="registrations">
+    <form class="form-inline my-2 my-lg-0">
+      <table class="table" id="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Violation</th>
+            <th scope="col">Location</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Penalty</th>
+            <th scope="col">License Tracker</th>
+            <th scope="col">Action</th>
+
+          </tr>
+        </thead>
+        <tbody id="yey">
+
+
+
+        </tbody>
+      </table>
+    </form>
+  </section>
+  </div>
+  {{#each driver}}
+  <p id="enno">{{dno}}</p>
+  {{/each}}
+  <script src="../server.js"></script>
+
+  <script>
+    web3.eth.getAccounts().then(function (accounts) {
+      var acc = accounts[1];
+      var mycontract;
+      var enno;
+      $(document).ready(function () {
+
+        var en = document.getElementById("enno");
+        en.style.display = "none";
+        enno = en.innerHTML;
+
+        mycontract = new web3.eth.Contract(abi, address, {
+          from: acc,
+          gasPrice: '0',
+          gas: 1400000
+        });
+        display();
+
+
+        $('#table').on('click', '.payment', function () {
+          var product_id = $(this).data('id');
+          var awit = $(this).data('id1');
+          var payment = $(this).data('id2');
+          let balance = 0;
+          {{#each driver}}
+          balance = "{{balance}}";
+          {{/each}}
+          balance = balance - (awit + payment);
+
+          if (balance >= 0) {
+            mycontract.methods.payment(product_id, awit).send({ from: acc }).then(function () {
+              alert("Payment Success");
+              window.location.href = "/balance?para1=" + balance;
+            });
+          }
+          else {
+            alert("You have enough balance");
+          }
+        });
+      })
+
+      function display() {
+
+        var list = $("#yey");
+        list.empty();
+
+        mycontract.methods.getlength().call().then(function (len) {
+          let ctr = 0;
+          for (let x = 0; x < len; x++) {
+
+            mycontract.methods.getddata(x).call({ from: acc }).then(function (result) {
+              if (enno == result[1] && result[5] == false) {
+
+                mycontract.methods.getppdata(x).call({ from: acc }).then(function (result1) {
+                  var datenow = new Date();
+                  var due = new Date(result1[0]);
+                  let d = 0;
+                  while (due < datenow) {
+                    d++;
+                    due.setDate(due.getDate() + 1);
+                  }
+
+                  if (d != 0)
+                    d--;
+
+                  let pen = 100 * d;
+                  ctr++;
+
+                  var add = "<tr><td>" + ctr + "</td><td>" + result[3] + "</td><td>" + result[4] + "</td><td>" + result1[0] + "</td><td>" + result1[1] + "</td><td>" + pen + "</td><td>" + result1[3] + "</td>" +
+                    "<td><a style = 'text-decoration: underline;' href='javascript:void(0);' class='payment' data-id='" + result1[4] + "' data-id1='" + pen + "' data-id2='" + result1[1] + "'>Payment</a></td></tr>";
+                  list.append(add);
+                })
+              }
+            })
+          }
+        });
+      }
+
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<html>
+
+<head>
+
+    <script src="node_modules/web3/dist/web3.js" type="text/javascript"></script>
+    <title>TRAPPIC|ENFORCER</title>
+    <link rel="stylesheet" href="content.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <section id="nav-bar">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/home"><img src="trappic logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Dashboard<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/searchdriver">File a Ticket<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="violations.html">List of Violations<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/history">Caught History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Account</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </section>
+
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="promo-title">FILE A TICKET</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{#each result}}
+    <section id="profile">
+        <div class="container emp-profile">
+            <form action="javascript:void(0);" method="post">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Fullname</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>License Number</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{licence_no}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Due Date</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p id="duedate"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="violation">Violation</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="violation" name="violation">
+                                            <option>Choose...</option>
+                                            <option>Driving without valid license</option>
+                                            <option>Driving a motor vehicle used for crime</option>
+                                            <option>Driving under impact of alcohol/drugs</option>
+                                            <option>Reckless driving</option>
+                                            <option>Not wearing a seatbelt</option>
+                                            <option>Passenger's not wearing a seatbelt</option>
+                                            <option>Not wearing a helmet</option>
+                                            <option>Driving withoud Driver's license, OR/CR</option>
+                                        </select><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Payment</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p id="payment">0</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Location</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" id="location" name="location" class="form-control"
+                                            id="inputLocation">
+                                    </div>
+                                </div>
+
+                                <div class="row" style="padding-top: 20px;">
+                                    <div class="col-md-6">
+                                        <label>Confiscate License</label>
+                                        <input type="checkbox" id="confiscate" style="margin-left: 10px;">
+
+                                    </div>
+                                    
+                                </div>
+                                <button id="deposit" type="button"
+                                    class="btn btn-outline-warning btn-lg btn-block">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <p id="licence">{{licence_no}}</p>
+            <p id="dno">{{dno}}</p>
+            <p id="name">{{name}}</p>
+            {{/each}}
+
+            {{#each results}}
+            <p id="enno">{{dno}}</p>
+            {{/each}}
+
+        </div>
+    </section>
+    
+
+    <script src="../server.js"></script>
+    <script>
+        web3.eth.getAccounts().then(function (accounts) {
+            var acc = accounts[0];
+            var mycontract;
+            var licence, dno, enno, nam;
+            var condi = "Onhand";
+            $(document).ready(function () {
+
+                var lic = document.getElementById("licence");
+                lic.style.display = "none";
+                licence = lic.innerHTML;
+                var dn = document.getElementById("dno");
+                dn.style.display = "none";
+                dno = dn.innerHTML;
+                var eno = document.getElementById("enno");
+                eno.style.display = "none";
+                enno = eno.innerHTML;
+
+
+                var name = document.getElementById("name");
+                name.style.display = "none";
+                nam = name.innerHTML;
+
+
+                var date = new Date();
+                var result = new Date(date);
+                result.setDate(result.getDate() + 7);
+                var utc = new Date(result).toJSON().slice(0, 10).replace(/-/g, '/');
+                document.getElementById("duedate").innerHTML = utc;
+
+
+                mycontract = new web3.eth.Contract(abi, address, {
+                    from: acc,
+                    gasPrice: '0',
+                    gas: 1400000
+                });
+                dddisplay();
+            })
+
+            $('#deposit').click(function () {
+                 var vio = $('#violation').val();
+                var loc = $('#location').val();
+                if(vio == "Choose..."||loc == "")
+                {
+                    alert("Fill out all necessary Information");
+                }
+                else
+                {
+                    add();
+                }
+            })
+
+            $('#violation').change(function () {
+                let payment = 0;
+                if (document.getElementById("violation").selectedIndex == 1) {
+                    payment = 1000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 2) {
+                    payment = 1000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 3) {
+                    payment = 1000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 4) {
+                    payment = 1000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 5) {
+                    payment = 2000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 6) {
+                    payment = 2000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 7) {
+                    payment = 2000;
+                }
+                else if (document.getElementById("violation").selectedIndex == 8) {
+                    payment = 2000;
+                }
+                document.getElementById("payment").innerHTML = payment;
+            })
+
+            function display() {
+                mycontract.methods.getlength().call().then(function (len) {
+                    alert(len);
+                });
+            }
+
+            function add() {
+                var vio = $('#violation').val();
+                var loc = $('#location').val();
+                var pay = document.getElementById("payment").innerHTML;
+                var due = document.getElementById("duedate").innerHTML;
+                var statsl = "";
+
+                if (document.getElementById("confiscate").disabled == true) {
+                    statsl = "Pending";
+                }
+                else if (document.getElementById("confiscate").checked == true) {
+                    statsl = "TE";
+                }
+                else {
+                    statsl = "Onhand";
+                }
+                var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+
+                mycontract.methods.addEntry(dno, nam, vio, loc, enno, utc, due, pay, 0, statsl).send({ from: acc }).then(function () {
+                    alert("Ticket Success" + nam);
+                    window.location.href = "/driverprofile?para1=" + licence + "&para2=" + dno;
+                });
+            }
+
+            function dddisplay() {
+                {{#each result}}
+                dno = "{{dno}}";
+                {{/each}}
+                mycontract.methods.getlength().call().then(function (len) {
+                    let ctr = 0;
+                    for (let x = 0; x < len; x++) {
+
+                        mycontract.methods.getpdata(x).call({ from: acc }).then(function (result) {
+
+                            if (dno.toString() == result[1].toString()) {
+                                mycontract.methods.getppdata(x).call({ from: acc }).then(function (result) {
+                                    if (result[3].toString() == "TE") {
+                                        document.getElementById("confiscate").disabled = true;
+                                    }
+                                    else if (result[3].toString() == "LTO") {
+                                        document.getElementById("confiscate").disabled = true;
+                                    }
+
+                                })
+                            }
+                        })
+                    }
+                });
+
+            }
+
+        }); 
+    </script>
+
+</body>
+
+</html>

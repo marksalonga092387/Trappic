@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>TRAPPIC|ENFORCER</title>
+        <link rel="stylesheet" href="content.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <section id="nav-bar">
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" href="/home"><img src="trappic logo.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/home">Dashboard<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/searchdriver">File a Ticket<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="violations.html">List of Violations<span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link" href="/history">Caught History</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/profile">Account</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+
+        </section>
+
+        <section id="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="promo-title">FILE A TICKET</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment">
+          
+          <form class="form-inline my-2 my-lg-0" action="/searchdriverprofile" method="POST">
+            <select class="btn btn-outline-success my-2 my-sm-0" name="category">
+                <option>Search by</option>
+                <option>Name</option>
+                <option>License No.</option>
+                <option>Conductor Sticker</option>
+                <option>Plate Number</option>
+              </select><br>
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <table class="table" id="mytable">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Fullname</th>
+                  <th scope="col">License No.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each result}}
+                <tr>
+
+                  <th scope="row">1</th>
+                  <td><a href="javascript:void(0);"  class ="profile" data-id="{{licence_no}}" data-id1="{{dno}}" >{{name}}</a></td>
+                  <td>{{licence_no}}</td>
+                  
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </form>
+        </section>
+         <script>  
+    $(document).ready(function(){
+			//showing data to modal for edit record
+      $('#mytable').on('click','.profile',function(){
+        var product_id = $(this).data('id');
+        var awit = $(this).data('id1');
+        window.location.href = "/driverprofile?para1="+product_id+"&para2="+awit;
+      });
+
+    });
+  </script>
+
+    </body>
+</html>

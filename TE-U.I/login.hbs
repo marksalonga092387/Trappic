@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>trAPPic</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+</head>
+<body>
+  <div class="container">
+		<div class="login-content">
+			<form action="/login" method="POST">
+				<img src="avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Enforcer No.</h5>
+           		   		<input type="text" id="user" class="input" name="user">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" id="pass" class="input" name="pass">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="button"  class="btn" id="login" value="Login">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+	
+	<script>
+		
+    $('#login').click(function () {
+	var user = document.getElementById("user").value;
+	var pass = document.getElementById("pass").value;
+	var x = 0;
+	var id = 0;
+	{{#each result}}
+	if(user.toString() == "{{dno}}" && pass.toString() == "{{pass}}")
+	{
+		x = 1;
+		id = "{{dno}}";
+	}
+	{{/each}}
+
+	if(x == 0)
+	{
+		alert("Incorrect License No or Password");
+	}
+	else
+	{
+		alert("Succesfully Login");
+		window.location.href = "/login?para1="+id;
+	}
+	});
+	</script>
+</body>
+</html>

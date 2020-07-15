@@ -1,0 +1,290 @@
+<html>
+
+<head>
+    <title>TRAPPIC|DRIVER</title>
+    <link rel="stylesheet" href="content.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <section id="nav-bar">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/home"><img src="trappic logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Dashboard<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="violations.html">List of Violations<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/history">Caught History</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/payment">Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Account</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </section>
+
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="promo-title">ACCOUNT</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{#each result}}
+                        <div class="profile-head">
+                            <h5>
+                                {{name}}
+                            </h5>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Type</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Driver</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Age</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{age}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{address}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Contact no.</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{contact}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Birthdate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{bday}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>License no.</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{licence_no}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Balance</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{balance}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><a href="javascript:void(0)" id="load" data-id1="{{dno}}"
+                                                data-id2="{{balance}}">Load Balance</a></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><a href="javascript:void(0)" id="changepass" data-id1="{{dno}}"
+                                                data-id2="{{pass}}">Change Pass</a></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><a href="/">logout</a></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </section>
+
+
+    <form id="myForm" method="post">
+        <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Load Balance</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="disabledSelect" id="lload">Balance: </label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="disabledSelect" id="lunit">Load Balance</label>
+                            <input type="Number" name="tload" class="form-control product_name" id="tload" required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" class="product_id">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" onclick="loading();" class="btn btn-primary">Load</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+    <form id="myForm" method="post">
+        <div class="modal fade" id="PassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Current Password</label>
+                            <input type="Password" name="oldpass" class="form-control product_name" id="oldpass"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabledSelect">New Password</label>
+                            <input type="Password" name="newpass" class="form-control product_name" id="newpass"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabledSelect">Confirm New Password</label>
+                            <input type="Password" name="cnewpass" class="form-control product_name" id="cnewpass"
+                                required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" onclick="change();" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        document.getElementById("load").addEventListener("click", load);
+        var balance = 0;
+        function load() {
+            var id = $(this).data('id1');
+            balance = $(this).data('id2');
+            document.getElementById("lload").innerHTML = "Balance: " + balance;
+            document.getElementById("tload").value = "0";
+            $('#EditModal').modal('show');
+        }
+        function loading() {
+            balance += parseInt(document.getElementById("tload").value);
+            document.getElementById("myForm").action = "/load?para1=" + balance;
+        }
+
+
+        document.getElementById("changepass").addEventListener("click", show);
+        var pass;
+        function show() {
+            var id = $(this).data('id1');
+            pass = $(this).data('id2');
+            $('#PassModal').modal('show');
+        }
+        function change() {
+            var old = document.getElementById("oldpass").value;
+            var newp = document.getElementById("newpass").value;
+            var cnewp = document.getElementById("cnewpass").value;
+
+            if (old != pass) {
+                alert("Incorrect Current Password");
+            }
+            else if (newp != cnewp) {
+                alert("Mismatch Confirm Password");
+            }
+            else if (newp.length < 8) {
+                alert("Password atleast 8 characters");
+            }
+            else {
+                alert("Update Successfully");
+                window.location.href = "/updatepass?para1=" + newp;
+            }
+
+        }
+    </script>
+</body>
+</html>

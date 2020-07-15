@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+#nav-bar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right, #d37407, #ffa601);
+}
+
+.navbar-brand img{
+    height: 150px;
+    width: 200px;
+    margin: -45px;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+}
+
+.navbar-nav li{
+    font-size: 15pt;
+}
+
+
+
+/*---------------------------- banner section -----------------------------*/
+
+#banner{
+    background-image: linear-gradient(to right, #ffffff, #ffecc6);
+    padding-top: 5%;
+    padding-bottom: 20%;
+    font-family: 'Anton', sans-serif;
+    font-size: 100pt;
+    color: rgb(24, 24, 24);
+}
+
+.promo-title{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100;
+}
+
+.search{
+    border: none;
+    background: none;
+    text-transform: capitalize;
+    margin-top: 7px;
+}

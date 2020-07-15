@@ -1,0 +1,223 @@
+<html>
+
+<head>
+  <title>TRAPPIC|LTO</title>
+  <link rel="stylesheet" href="violation.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <section id="nav-bar">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html"><img src="trappic logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="driverregistration.html">Driver Registration</a>
+              <a class="dropdown-item" href="enforcerregistration.html">Enforcer Registration</a>
+              <a class="dropdown-item" href="registrations.html">Car Registration</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="violations.html">List of Violations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/payment">Payments</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Search
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/searchdriver">Driver</a>
+              <a class="dropdown-item" href="/searchenforcer">Enforcer</a>
+              <a class="dropdown-item" href="/viewcar">Car</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+  </section>
+
+  <section id="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="promo-title">CAR REGISTRATION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="registrations">
+    <label>Search for a Driver: </label>
+    <input class="form-control mr-sm-2" type="search" placeholder="License No" id="yey" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="profile"
+      onclick="javascript(0);">Search</button>
+    <div class="line">
+      .
+    </div>
+
+    <div class="profile-head">
+      <h5>
+        Driver's Information
+      </h5>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+      </ul>
+    </div>
+    <div class="tab-content profile-tab" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col-md-6">
+            <label>License Number</label>
+          </div>
+          <div class="col-md-6">
+            {{#each result}}
+            <p>{{licence_no}}</p>
+            {{/each}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Name</label>
+          </div>
+          <div class="col-md-6">
+            {{#each result}}
+            <p>{{name}}</p>
+            {{/each}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Address</label>
+          </div>
+          <div class="col-md-6">
+            {{#each result}}
+            <p>{{address}}</p>
+            {{/each}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Contact no.</label>
+          </div>
+          <div class="col-md-6">
+            {{#each result}}
+            <p>{{contact}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5><br><br>
+              Add a Car
+            </h5>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      {{#each result}}
+      <form action="/addcar?para1={{dno}}" method="POST">
+        {{/each}}
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Car Brand</label>
+                <input type="text" class="form-control" id="validationDefault01" name="brand" placeholder="Car Brand"
+                  required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Car Model</label>
+                <input type="text" class="form-control" id="validationDefault02" name="model" placeholder="Car Model"
+                  required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefaultUsername">Car Color</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="validationDefaultUsername" name="color"
+                    placeholder="Car Color" required>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Plate Number</label>
+                <input type="text" class="form-control" placeholder="Plate nummber" name="platenumber" id="inputEmail4"
+                  required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Conduction Sticker</label>
+                <input type="text" class="form-control" placeholder="Conductor Sticker" name="conductor"
+                  id="inputPassword" required>
+              </div>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>
+            </div><br><br>
+      </form>
+      <h3>Cars</h3>
+      <form class="form-inline my-2 my-lg-0">
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Car Brand</th>
+              <th scope="col">Car Model</th>
+              <th scope="col">Car Color</th>
+              <th scope="col">Plate Number</th>
+              <th scope="col">Conduction Sticker</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {{#each car}}
+            <tr>
+              <th scope="row">{{cno}}</th>
+              <td>{{brand}}</td>
+              <td>{{model}}</td>
+              <td>{{color}}</td>
+              <td>{{platenumber}}</td>
+              <td>{{conductor}}</td>
+
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </section>
+  <script>
+    $(document).ready(function () {
+      //showing data to modal for edit record
+      $('#registrations').on('click', '#profile', function () {
+        window.location.href = "/searchcar?para1=" + document.getElementById("yey").value;
+      });
+
+    });
+  </script>
+</body>
+
+</html>
